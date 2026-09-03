@@ -1,27 +1,27 @@
-# Astro Starter Kit: Minimal
+# skelator
 
-```sh
-npm create astro@latest -- --template minimal
-```
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+An Astro project with Svelte and Tailwind CSS v4.
 
 ## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
 
 ```text
 /
 ├── public/
 ├── src/
-│   └── pages/
-│       └── index.astro
+│   ├── pages/
+│   │   └── index.astro
+│   └── styles/
+│       └── global.css
+├── astro.config.mjs
+├── svelte.config.js
 └── package.json
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+Astro looks for `.astro` or `.md` files in `src/pages/`. Each page is exposed as a route based on its file name.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+**Integrations:**
+- **[Svelte](https://svelte.dev/)** — via `@astrojs/svelte`
+- **[Tailwind CSS v4](https://tailwindcss.com/)** — via `@tailwindcss/vite`
 
 Any static assets, like images, can be placed in the `public/` directory.
 
