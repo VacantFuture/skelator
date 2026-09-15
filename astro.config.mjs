@@ -1,4 +1,5 @@
 // @ts-check
+import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'astro/config';
 
 import svelte from '@astrojs/svelte';
@@ -10,6 +11,11 @@ export default defineConfig({
   integrations: [svelte()],
 
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [tailwindcss()],
+    resolve: {
+      alias: {
+        $lib: fileURLToPath(new URL('./src/lib/', import.meta.url)),
+      }
+    }
   }
 });
