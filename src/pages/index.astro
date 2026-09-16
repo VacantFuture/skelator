@@ -1,104 +1,77 @@
 ---
-import Nav from '../components/Nav.svelte';
-import '../styles/global.css';
+import Layout from '../layouts/Layout.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="generator" content={Astro.generator} />
-		<title>DSA — Labor Day</title>
-	</head>
-	<body class="bg-surface-default text-heading-primary">
+<Layout>
+  <title slot="head">DSA — Labor Day</title>
 
-		<!-- ═══ Page Header / Nav ═══ -->
-		<Nav client:load />
+	<!-- Article meta -->
+	<p class="text-caption font-sans text-body-tertiary uppercase tracking-wider mb-6">
+		Special Report &middot; September 2025
+	</p>
 
-		<!-- ═══ Main Article ═══ -->
-		<main class="mx-auto max-w-2xl px-6 py-16 md:py-24">
+	<!-- Headline -->
+	<h1 class="text-responsive-xl md:text-display font-display font-bold leading-tight text-heading-primary mb-4">
+		Labor Day: Why the Fight for Workers Is the Fight for Democracy Itself
+	</h1>
 
-			<!-- Article meta -->
-			<p class="text-caption font-sans text-body-tertiary uppercase tracking-wider mb-6">
-				Special Report &middot; September 2025
-			</p>
+	<!-- Sub-heading / Deck -->
+	<h2 class="text-responsive-lg md:text-title font-display font-semibold text-heading-secondary leading-snug mb-12 max-w-xl">
+		As we mark another May Day, the labor movement stands at a crossroads — one that will define the future of work, dignity, and power in this country.
+	</h2>
 
-			<!-- Headline -->
-			<h1 class="text-responsive-xl md:text-display font-display font-bold leading-tight text-heading-primary mb-4">
-				Labor Day: Why the Fight for Workers Is the Fight for Democracy Itself
-			</h1>
+	<!-- Article body -->
+	<article class="prose max-w-none">
 
-			<!-- Sub-heading / Deck -->
-			<h2 class="text-responsive-lg md:text-title font-display font-semibold text-heading-secondary leading-snug mb-12 max-w-xl">
-				As we mark another May Day, the labor movement stands at a crossroads — one that will define the future of work, dignity, and power in this country.
-			</h2>
+		<p class="lead text-responsive-md text-body-primary">
+			For over a century, workers have gathered on the first Monday in September to celebrate what the labor movement has won: the eight-hour day, workplace safety standards, the end of child labor, the weekend, overtime pay, and the simple idea that a person's worth is not measured by their hourly wage. But celebration without action is hollow. This Labor Day, we must ask ourselves what kind of movement we are building — and who it serves.
+		</p>
 
-			<!-- Article body -->
-			<article class="prose max-w-none">
+		<h3 class="text-responsive-md font-display font-bold text-heading-primary mt-12 mb-4">The Historical Stakes</h3>
 
-				<p class="lead text-responsive-md text-body-primary">
-					For over a century, workers have gathered on the first Monday in September to celebrate what the labor movement has won: the eight-hour day, workplace safety standards, the end of child labor, the weekend, overtime pay, and the simple idea that a person's worth is not measured by their hourly wage. But celebration without action is hollow. This Labor Day, we must ask ourselves what kind of movement we are building — and who it serves.
-				</p>
+		<p>
+			The labor movement did not emerge from the benevolence of the powerful. It was forged in blood and fire — in the blood spilled at Haymarket, in the fires of the Ludlow Massacre, in the strike-breaking violence of Pinkerton agents and state militias. Every right we take for granted on a typical workday was wrested from those who believed they had an absolute right to treat human beings as interchangeable parts.
+		</p>
 
-				<h3 class="text-responsive-md font-display font-bold text-heading-primary mt-12 mb-4">The Historical Stakes</h3>
+		<p>
+			This is not ancient history. It is the foundation upon which every labor victory since has been built. To forget it is to invite its reversal.
+		</p>
 
-				<p>
-					The labor movement did not emerge from the benevolence of the powerful. It was forged in blood and fire — in the blood spilled at Haymarket, in the fires of the Ludlow Massacre, in the strike-breaking violence of Pinkerton agents and state militias. Every right we take for granted on a typical workday was wrested from those who believed they had an absolute right to treat human beings as interchangeable parts.
-				</p>
+		<h3 class="text-responsive-md font-display font-bold text-heading-primary mt-12 mb-4">The Modern Landscape</h3>
 
-				<p>
-					This is not ancient history. It is the foundation upon which every labor victory since has been built. To forget it is to invite its reversal.
-				</p>
+		<p>
+			Today, we face a different set of challenges — but the fundamental question remains the same: who holds power in the workplace? The answer determines whether a worker can afford healthcare, whether a single mother can work two jobs and still feed her children, whether a young graduate can enter the workforce without being shackled to decades of debt.
+		</p>
 
-				<h3 class="text-responsive-md font-display font-bold text-heading-primary mt-12 mb-4">The Modern Landscape</h3>
+		<p>
+			Union density in the United States has hovered around 10 percent for decades, though recent organizing drives at companies like Amazon, Starbucks, and various auto plants have sparked a renewed sense of possibility. Young workers — many of them born into the gig economy, where every shift is a solo performance with no union rep to call — are leading a new wave of labor activism that is bold, creative, and unapologetically intersectional.
+		</p>
 
-				<p>
-					Today, we face a different set of challenges — but the fundamental question remains the same: who holds power in the workplace? The answer determines whether a worker can afford healthcare, whether a single mother can work two jobs and still feed her children, whether a young graduate can enter the workforce without being shackled to decades of debt.
-				</p>
+		<blockquote>
+			"The labor movement is not just about wages and benefits. It is about democracy itself — the idea that every person who contributes to the production of wealth should have a say in how that wealth is distributed and how work is organized."
+		</blockquote>
 
-				<p>
-					Union density in the United States has hovered around 10 percent for decades, though recent organizing drives at companies like Amazon, Starbucks, and various auto plants have sparked a renewed sense of possibility. Young workers — many of them born into the gig economy, where every shift is a solo performance with no union rep to call — are leading a new wave of labor activism that is bold, creative, and unapologetically intersectional.
-				</p>
+		<p>
+			The gig economy has disrupted traditional employment structures, leaving millions of workers without the protections that decades of organizing secured. Delivery drivers, rideshare operators, warehouse workers, and home care workers find themselves in a legal limbo — classified as independent contractors rather than employees, stripping them of minimum wage guarantees, overtime pay, and the right to unionize. This is not innovation; it is exploitation dressed up in startup jargon.
+		</p>
 
-				<blockquote>
-					"The labor movement is not just about wages and benefits. It is about democracy itself — the idea that every person who contributes to the production of wealth should have a say in how that wealth is distributed and how work is organized."
-				</blockquote>
+		<h3 class="text-responsive-md font-display font-bold text-heading-primary mt-12 mb-4">The Power of Solidarity</h3>
 
-				<p>
-					The gig economy has disrupted traditional employment structures, leaving millions of workers without the protections that decades of organizing secured. Delivery drivers, rideshare operators, warehouse workers, and home care workers find themselves in a legal limbo — classified as independent contractors rather than employees, stripping them of minimum wage guarantees, overtime pay, and the right to unionize. This is not innovation; it is exploitation dressed up in startup jargon.
-				</p>
+		<p>
+			Solidarity is not a buzzword. It is the practical recognition that your interests are tied to the interests of every other worker, regardless of their industry, geography, or identity. When a nurse in Chicago wins a contract with better staffing ratios, every nurse in the country benefits. When a warehouse worker at an Amazon fulfillment center wins union recognition, the precedent strengthens the hand of every warehouse worker everywhere.
+		</p>
 
-				<h3 class="text-responsive-md font-display font-bold text-heading-primary mt-12 mb-4">The Power of Solidarity</h3>
+		<p>
+			Building this kind of solidarity requires more than rhetoric. It requires organizing — door-knocking, one-on-one meetings, worker education, and the willingness to take risks. It means showing up at picket lines for causes that may not directly affect you. It means recognizing that the fight for a living wage, for healthcare, for housing, and for racial justice are all part of the same struggle.
+		</p>
 
-				<p>
-					Solidarity is not a buzzword. It is the practical recognition that your interests are tied to the interests of every other worker, regardless of their industry, geography, or identity. When a nurse in Chicago wins a contract with better staffing ratios, every nurse in the country benefits. When a warehouse worker at an Amazon fulfillment center wins union recognition, the precedent strengthens the hand of every warehouse worker everywhere.
-				</p>
+		<p>
+			The Democratic Socialists of America has a unique role to play in this movement. As a political organization rooted in both theory and practice, we bring a framework that connects workplace struggles to broader structural change. We understand that economic democracy is inseparable from political democracy — that you cannot have one without the other. Our task is to help build a labor movement that is as diverse, as ambitious, and as radical as the challenges we face.
+		</p>
 
-				<p>
-					Building this kind of solidarity requires more than rhetoric. It requires organizing — door-knocking, one-on-one meetings, worker education, and the willingness to take risks. It means showing up at picket lines for causes that may not directly affect you. It means recognizing that the fight for a living wage, for healthcare, for housing, and for racial justice are all part of the same struggle.
-				</p>
+		<p>
+			As we celebrate Labor Day, let us not merely look backward. Let us look forward with clear eyes at what must still be won. The future of work is not written — it is being written now, in every bargaining session, every picket line, every union drive, and every conversation between a worker and their colleague about what they deserve. The question is not whether the labor movement will evolve. It is whether we will evolve fast enough to meet the moment.
+		</p>
 
-				<p>
-					The Democratic Socialists of America has a unique role to play in this movement. As a political organization rooted in both theory and practice, we bring a framework that connects workplace struggles to broader structural change. We understand that economic democracy is inseparable from political democracy — that you cannot have one without the other. Our task is to help build a labor movement that is as diverse, as ambitious, and as radical as the challenges we face.
-				</p>
-
-				<p>
-					As we celebrate Labor Day, let us not merely look backward. Let us look forward with clear eyes at what must still be won. The future of work is not written — it is being written now, in every bargaining session, every picket line, every union drive, and every conversation between a worker and their colleague about what they deserve. The question is not whether the labor movement will evolve. It is whether we will evolve fast enough to meet the moment.
-				</p>
-
-			</article>
-
-			<!-- Divider -->
-			<hr />
-
-			<!-- Footer -->
-			<footer class="mt-16 text-center text-body-sm font-sans text-body-tertiary">
-				<p>&copy; 2025 Democratic Socialists of America — Local Chapter</p>
-			</footer>
-
-		</main>
-
-	</body>
-</html>
+	</article>
+</Layout>

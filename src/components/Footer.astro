@@ -1,0 +1,63 @@
+---
+const navLinks = [
+  {
+    section: 'Navigate',
+    links: [
+      { label: 'Articles', href: '#' },
+      { label: 'Campaigns', href: '#' },
+      { label: 'About', href: '#' },
+    ],
+  },
+  {
+    section: 'DSA',
+    links: [
+      { label: 'DSA National', href: 'https://dsas.org' },
+      { label: 'Local Chapters', href: '#' },
+      { label: 'Join DSA', href: '#' },
+    ],
+  },
+  {
+    section: 'Take Action',
+    links: [
+      { label: 'Volunteer', href: '#' },
+      { label: 'Donate', href: '#' },
+      { label: 'Contact Us', href: '#' },
+    ],
+  },
+];
+
+const copyright = `\u00A9 ${new Date().getFullYear()} Democratic Socialists of America — High Peaks Chapter`;
+---
+
+<footer class="border-t border-neutral-200 bg-surface-default">
+  <div class="mx-auto max-w-4xl px-6 py-16">
+    <div class="grid grid-cols-1 gap-12 md:grid-cols-3">
+      {navLinks.map((section) => (
+        <div>
+          <h3 class="text-heading font-sans font-bold uppercase tracking-wider text-heading-secondary">
+            {section.section}
+          </h3>
+          <ul class="mt-4 space-y-2.5 font-sans text-body-sm">
+            {section.links.map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  class="text-body-secondary transition-colors hover:text-accent-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 rounded-sm"
+                >{link.label}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+    <hr class="my-12 border-neutral-200" />
+
+    <div class="flex flex-col gap-4 text-body-sm font-sans text-body-tertiary md:flex-row md:items-center md:justify-between md:gap-0">
+      <p>{copyright}</p>
+      <p class="md:text-right">
+        Built with solidarity.
+      </p>
+    </div>
+  </div>
+</footer>
