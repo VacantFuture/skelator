@@ -1,8 +1,5 @@
 <script>
   import { onMount, onDestroy } from 'svelte';
-  // `?url` forces Vite to return a plain asset URL string
-  // (Astro otherwise transforms image imports in framework components into objects).
-  import logoUrl from '../assets/images/Main_Logo_Circle_Small.png?url';
 
   /** Nav links. Point hrefs at real routes as pages are added. */
   const links = [
@@ -52,31 +49,24 @@
 
 <header
   bind:this={headerEl}
-  class="sticky top-0 z-50 border-b border-default bg-surface-elevated"
+  class="sticky top-0 z-50 border-b border-default bg-accent-500"
 >
-  <div class="mx-auto flex max-w-4xl items-center justify-between px-6 py-5">
-    <!-- Wordmark: brand icon + DSA -->
+  <div class="mx-auto flex max-w-4xl items-center justify-between px-6 py-10">
+    <!-- Wordmark -->
     <a
       href="/"
-      class="flex items-center gap-3 rounded-sm font-display text-lg font-bold tracking-tight text-heading-primary transition-colors hover:text-accent-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring-focus"
-      >
-      <img
-        src={logoUrl}
-        alt=""
-        class="h-9 w-9 shrink-0 rounded-full"
-      />
-      DSA
-    </a>
+      class="rounded-sm font-display text-lg font-bold tracking-tight text-neutral-0 transition-colors hover:text-neutral-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-0"
+      >HighPeaks DSA</a>
 
     <!-- Desktop nav -->
     <nav
       aria-label="Primary"
-      class="hidden items-center gap-6 font-sans text-body-sm text-body-secondary md:flex"
+      class="hidden items-center gap-6 font-sans text-body-sm text-neutral-0 md:flex"
     >
       {#each links as link (link.label)}
         <a
           href={link.href}
-          class="transition-colors hover:text-accent-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring-focus rounded-sm"
+          class="transition-colors hover:text-neutral-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-0 rounded-sm"
         >{link.label}</a>
       {/each}
     </nav>
@@ -88,7 +78,7 @@
       aria-expanded={open}
       aria-controls="mobile-nav"
       aria-label={open ? 'Close navigation menu' : 'Open navigation menu'}
-      class="flex size-10 items-center justify-center rounded-md text-heading-primary transition-colors hover:text-accent-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring-focus md:hidden"
+      class="flex size-10 items-center justify-center rounded-md text-neutral-0 transition-colors hover:text-neutral-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-0 md:hidden"
     >
       {#if open}
         <!-- Icon: close -->
@@ -109,13 +99,13 @@
     <nav
       id="mobile-nav"
       aria-label="Primary"
-      class="flex animate-slide-in flex-col gap-1 border-t border-default px-6 py-4 font-sans text-body-sm text-body-secondary motion-reduce:animate-none md:hidden"
+      class="flex animate-slide-in flex-col gap-1 border-t border-default px-6 py-4 font-sans text-body-sm text-neutral-0 motion-reduce:animate-none md:hidden"
     >
       {#each links as link (link.label)}
         <a
           href={link.href}
           onclick={close}
-          class="rounded-md px-2 py-2 transition-colors hover:bg-surface-inline hover:text-accent-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring-focus"
+          class="rounded-md px-2 py-2 transition-colors hover:bg-surface-inline hover:text-accent-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-0"
         >{link.label}</a>
       {/each}
     </nav>

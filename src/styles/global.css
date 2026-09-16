@@ -50,18 +50,19 @@
   --color-neutral-900: #171513;
   --color-neutral-950: #0c0b0a;
 
-  /* Primitives: Accent Ramp (brand, derived from #FF2630) */
-  --color-accent-50: oklch(96% 0.18 358);
-  --color-accent-100: oklch(88% 0.22 358);
-  --color-accent-200: oklch(76% 0.24 358);
-  --color-accent-300: oklch(64% 0.24 358);
-  --color-accent-400: oklch(56% 0.24 358);
-  --color-accent-500: oklch(56% 0.24 358);
-  --color-accent-600: oklch(44% 0.22 358);
-  --color-accent-700: oklch(32% 0.18 358);
-  --color-accent-800: oklch(20% 0.12 358);
-  --color-accent-900: oklch(10% 0.06 358);
-  --color-accent-950: oklch(5% 0.03 358);
+  /* Primitives: Accent Ramp (brand, matching NYC DSA Logo Red) */
+  /* Hue 28 = True Red. Lightness increased to 60% for vibrancy. */
+  --color-accent-50: oklch(97% 0.03 28);
+  --color-accent-100: oklch(92% 0.06 28);
+  --color-accent-200: oklch(82% 0.10 28);
+  --color-accent-300: oklch(72% 0.14 28);
+  --color-accent-400: oklch(66% 0.18 28);
+  --color-accent-500: oklch(60% 0.22 28); /* Bright Brand Red (Matches Logo) */
+  --color-accent-600: oklch(52% 0.20 28);
+  --color-accent-700: oklch(44% 0.16 28);
+  --color-accent-800: oklch(34% 0.10 28);
+  --color-accent-900: oklch(24% 0.06 28);
+  --color-accent-950: oklch(16% 0.03 28);
 
   /* Primitives: Status Ramps */
   --color-success-400: oklch(52% 0.14 155);
