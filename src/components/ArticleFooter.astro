@@ -1,0 +1,133 @@
+---
+/**
+ * ArticleFooter.astro
+ *
+ * Renders article metadata and engagement elements at the bottom
+ * of an article: tags, share buttons, and a comments toggle.
+ *
+ * Props:
+ *   tags       - Array of tag objects with label and optional href
+ *   articleUrl - URL of this article for sharing (required)
+ *   articleTitle - Article title for share metadata (required)
+ *   showComments - Whether to show the comments section (default: false)
+ */
+
+interface Props {
+  tags: { label: string; href?: string }[];
+  articleUrl: string;
+  articleTitle: string;
+  showComments?: boolean;
+}
+
+const {
+  tags,
+  articleUrl,
+  articleTitle,
+  showComments = false,
+} = Astro.props;
+
+const encodedUrl = encodeURIComponent(articleUrl);
+const encodedTitle = encodeURIComponent(articleTitle);
+
+interface ShareLink {
+  label: string;
+  href: string;
+  ariaLabel: string;
+}
+
+const shareLinks: ShareLink[] = [
+  {
+    label: 'Facebook',
+    href: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
+    ariaLabel: 'Share on Facebook',
+  },
+  {
+    label: 'Bluesky',
+    href: `https://bsky.app/intent/post?text=${encodedTitle}&url=${encodedUrl}`,
+    ariaLabel: 'Share on Bluesky',
+  },
+  {
+    label: 'Instagram',
+    href: `https://www.instagram.com/`,
+    ariaLabel: 'Share on Instagram',
+  },
+  {
+    label: 'Email',
+    href: `mailto:?subject=${encodedTitle}&body=${encodedUrl}`,
+    ariaLabel: 'Share via Email',
+  },
+];
+---
+
+<footer class="mt-16 border-t border-neutral-200 pt-10">
+  <!-- Tags -->
+  {tags.length > 0 && (
+    <div class="mb-10">
+      <h3 class="font-sans text-caption font-bold uppercase tracking-wider text-body-tertiary mb-3">
+        Tags
+      </h3>
+      <div class="flex flex-wrap gap-2">
+        {tags.map((tag) => (
+          <a
+            href={tag.href ?? '#'}
+            class="inline-block rounded-full bg-surface-inline px-3.5 py-1.5 font-sans text-body-sm text-body-secondary transition-colors hover:bg-accent-500 hover:text-neutral-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500"
+          >
+            {tag.label}
+          </a>
+        ))}
+      </div>
+    </div>
+  )}
+
+  <!-- Share -->
+  <div>
+    <h3 class="font-sans text-caption font-bold uppercase tracking-wider text-body-tertiary mb-3">
+      Share
+    </h3>
+    <div class="flex gap-3">
+      {shareLinks.map((share) => (
+        <a
+          href={share.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex size-10 items-center justify-center rounded-full bg-surface-inline text-body-secondary transition-colors hover:bg-accent-500 hover:text-neutral-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500"
+          aria-label={share.ariaLabel}
+        >
+          {share.label === 'Facebook' && (
+            <svg class="size-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+            </svg>
+          )}
+          {share.label === 'Bluesky' && (
+            <svg class="size-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 10.8c-2.168-4.048-7.2-7.32-7.2-11.28C4.8 1.008 7.56 0 12 0s7.2 1.008 7.2 9.48c0 3.96-5.032 7.236-7.2 11.28-.728-2.232-2.16-4.068-3.6-5.88l-.36-.504c-.848 1.188-1.768 2.484-2.448 3.924C4.68 17.58 3.6 16.056 3 14.316c-.36-1.008-.36-2.04-.12-3.06.36-1.476 1.32-2.7 2.64-3.36 1.08-.528 2.28-.6 3.42-.24.6.192 1.176.504 1.68.912A5.79 5.79 0 0 1 12 10.8Z" />
+            </svg>
+          )}
+          {share.label === 'Instagram' && (
+            <svg class="size-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z" />
+            </svg>
+          )}
+          {share.label === 'Email' && (
+            <svg class="size-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+              <polyline points="22,6 12,13 2,6" />
+            </svg>
+          )}
+        </a>
+      ))}
+    </div>
+  </div>
+
+  <!-- Comments toggle -->
+  {showComments && (
+    <div class="mt-10">
+      <button
+        type="button"
+        class="font-sans text-heading font-bold text-heading-primary underline underline-offset-4 decoration-accent-500/50 transition-colors hover:text-accent-600 hover:decoration-accent-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 rounded-sm"
+      >
+        Show Comments (0)
+      </button>
+    </div>
+  )}
+</footer>

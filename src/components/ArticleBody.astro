@@ -1,0 +1,34 @@
+---
+/**
+ * ArticleBody.astro
+ *
+ * Renders an article's body content with editorial typography.
+ * Accepts HTML string content (e.g., from a CMS or markdown pipeline)
+ * and applies consistent prose styling using the design system tokens.
+ *
+ * Also supports optional inline media: embed <img> tags with responsive
+ * classes, and handles blockquotes, code, lists, and headings via the
+ * global.css prose base styles.
+ *
+ * Props:
+ *   html          - Raw HTML string content (required)
+ *   contentSlot   - Fallback: pass children content directly as a slot
+ *   proseClass    - Optional additional prose utility classes
+ */
+
+interface Props {
+  html?: string;
+  proseClass?: string;
+}
+
+const { html, proseClass = 'prose max-w-none' } = Astro.props;
+
+const renderedContent = html;
+---
+
+<div class={proseClass}>
+  {html
+    ? <div innerHTML={renderedContent} />
+    : <slot />
+  }
+</div>

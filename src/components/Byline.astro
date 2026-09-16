@@ -1,0 +1,97 @@
+---
+/**
+ * Byline.astro
+ *
+ * Renders author attribution for articles.
+ * Supports avatar (image or initials fallback), author name, bio,
+ * publish date, updated date, reading time, and author profile URL.
+ *
+ * Props:
+ *   author        - Author display name (required)
+ *   bio           - Optional short author bio
+ *   avatar        - Optional avatar image URL
+ *   avatarInitial - Fallback initials if no avatar image provided
+ *   publishedAt   - ISO date string for publish date (required)
+ *   updatedAt     - Optional ISO date string for last-updated date
+ *   readingTime   - Optional estimated reading time in minutes
+ *   authorUrl     - Optional URL for the author's profile or bio page
+ */
+
+interface Props {
+  author: string;
+  bio?: string;
+  avatar?: string;
+  avatarInitial?: string;
+  publishedAt: string;
+  updatedAt?: string;
+  readingTime?: number;
+  authorUrl?: string;
+}
+
+const {
+  author,
+  bio,
+  avatar,
+  avatarInitial = author.charAt(0).toUpperCase(),
+  publishedAt,
+  updatedAt,
+  readingTime,
+  authorUrl,
+} = Astro.props;
+
+const formatDate = (iso: string) => {
+  const date = new Date(iso);
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+};
+
+const hasAvatar = !!avatar;
+---
+
+<div class="flex items-center gap-4 py-6">
+  {hasAvatar ? (
+    <img
+      src={avatar}
+      alt={`Photo of ${author}`}
+      class="size-12 rounded-full object-cover"
+    />
+  ) : (
+    <div class="flex size-12 items-center justify-center rounded-full bg-accent-500 text-heading text-neutral-0 font-bold">
+      {avatarInitial}
+    </div>
+  )}
+
+  <div class="min-w-0">
+    <p class="font-sans text-body-primary">
+      {authorUrl ? (
+        <a
+          href={authorUrl}
+          class="font-sans text-body-primary hover:text-accent-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 rounded-sm"
+        >
+          {author}
+        </a>
+      ) : (
+        <span class="font-sans text-body-primary">{author}</span>
+      )}
+    </p>
+    <div class="flex flex-wrap items-center gap-1.5 font-sans text-body-sm text-body-tertiary">
+      <time datetime={publishedAt}>{formatDate(publishedAt)}</time>
+      {updatedAt && (
+        <>
+          <span>&middot;</span>
+          <time datetime={updatedAt}>Updated {formatDate(updatedAt)}</time>
+        </>
+      )}
+      {readingTime && (
+        <>
+          <span>&middot;</span>
+          <span>{readingTime} min read</span>
+        </>
+      )}
+    </div>
+    {bio && <p class="mt-1 font-sans text-body-sm text-body-secondary">{bio}</p>}
+  </div>
+</div>

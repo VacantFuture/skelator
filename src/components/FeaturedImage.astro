@@ -1,0 +1,65 @@
+---
+/**
+ * FeaturedImage.astro
+ *
+ * Renders a responsive, accessible featured image for articles.
+ * Supports aspect ratios, lazy-loading, captions, image credits,
+ * dark-mode friendly borders, and responsive srcset.
+ *
+ * Props:
+ *   src        - Image source path (default: highpeaks-logo-base.png)
+ *   alt        - Alt text for accessibility (default: "High Peaks Community Logo")
+ *   aspect     - Aspect ratio class (default: "aspect-[3/2]")
+ *   caption    - Optional caption text displayed below the image
+ *   credit     - Optional image credit (e.g., "Photo: Jane Doe")
+ *   sizes      - Responsive sizes attribute for browser optimization
+ *   priority   - Use loading="eager" instead of lazy (default: false)
+ */
+
+import featuredImageSrc from '../assets/images/highpeaks-logo-base.png';
+
+interface Props {
+  src?: string;
+  alt?: string;
+  aspect?: string;
+  caption?: string;
+  credit?: string;
+  sizes?: string;
+  priority?: boolean;
+}
+
+const {
+  src = featuredImageSrc.src,
+  alt = 'High Peaks Community Logo',
+  aspect = 'aspect-[3/2]',
+  caption,
+  credit,
+  sizes = '(min-width: 768px) 768px, 100vw',
+  priority = false,
+} = Astro.props;
+
+const loadingAttr = priority ? 'eager' : 'lazy';
+---
+
+<figure class="group relative w-full">
+  <div class={["relative w-full overflow-hidden rounded-lg", aspect].filter(Boolean).join(' ')}>
+    <img
+      src={src}
+      alt={alt}
+      loading={loadingAttr}
+      fetchpriority={priority ? 'high' : undefined}
+      sizes={sizes}
+      class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+    />
+  </div>
+
+  {(caption || credit) && (
+    <figcaption class="mt-3 max-w-none">
+      <p class="font-sans text-body-sm text-body-secondary">
+        {caption && <span>{caption}</span>}
+        {caption && credit && <span class="mx-1">&middot;</span>}
+        {credit && <span class="italic">{credit}</span>}
+      </p>
+    </figcaption>
+  )}
+</figure>

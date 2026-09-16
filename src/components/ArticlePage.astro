@@ -1,0 +1,114 @@
+---
+/**
+ * ArticlePage.astro
+ *
+ * A composite page component that assembles all article sub-components
+ * into a complete article layout:
+ *   category → headline → deck → featured-image → byline → body → footer
+ *
+ * Use this component directly in pages/ routes. The body is passed via
+ * default <slot> — each page file writes its content in plain HTML.
+ *
+ * Props:
+ *   title          - Article headline (h1) (required)
+ *   category       - Section/category label (e.g. "Special Report · September 2025")
+ *   deck           - Sub-heading / deck paragraph
+ *   featuredImage  - Props passed to FeaturedImage (src, alt, etc.)
+ *   byline         - Props passed to Byline (author, publishedAt, etc.)
+ *   tags           - Array of tag objects for ArticleFooter
+ *   articleUrl     - Canonical URL for share links
+ *   comments       - Show comments toggle (default: false)
+ *
+ * Usage:
+ *   <ArticlePage
+ *     title="My Article"
+ *     category="Feature · October 2025"
+ *     deck="A compelling sub-heading."
+ *     featuredImage={{ src: "/img/hero.jpg", alt: "Hero description" }}
+ *     byline={{ author: "Jane Doe", publishedAt: "2025-10-01", readingTime: 8 }}
+ *     tags={[{ label: "Labor", href: "/tags/labor" }]}
+ *     articleUrl={Astro.request.url}
+ *   >
+ *     <h3>A heading</h3>
+ *     <p>Body content goes here...</p>
+ *   </ArticlePage>
+ */
+
+import FeaturedImage from './FeaturedImage.astro';
+import Byline from './Byline.astro';
+import ArticleBody from './ArticleBody.astro';
+import ArticleFooter from './ArticleFooter.astro';
+
+interface Props {
+  title: string;
+  category?: string;
+  deck?: string;
+  featuredImage?: object;
+  byline?: object;
+  tags?: { label: string; href?: string }[];
+  articleUrl?: string;
+  comments?: boolean;
+}
+
+const {
+  title,
+  category,
+  deck,
+  featuredImage,
+  byline,
+  tags = [],
+  articleUrl = '',
+  comments = false,
+} = Astro.props;
+
+const metaTitle = title ? `DSA — ${title}` : 'DSA';
+---
+
+<!-- Title slot for <head> -->
+<title slot="head">{metaTitle}</title>
+
+<!-- Category / section label -->
+{category && (
+  <p class="text-caption font-sans text-body-tertiary uppercase tracking-wider mb-6">
+    {category}
+  </p>
+)}
+
+<!-- Headline -->
+<h1 class="text-responsive-xl md:text-display font-display font-bold leading-tight text-heading-primary mb-4">
+  {title}
+</h1>
+
+<!-- Deck / sub-heading -->
+{deck && (
+  <h2 class="text-responsive-lg md:text-title font-display font-semibold text-heading-secondary leading-snug mb-12 max-w-xl">
+    {deck}
+  </h2>
+)}
+
+<!-- Featured image -->
+{featuredImage && (
+  <div class="mb-12">
+    <FeaturedImage {...featuredImage} />
+  </div>
+)}
+
+<!-- Byline -->
+{byline && (
+  <div class="mb-12">
+    <Byline {...byline} />
+  </div>
+)}
+
+<!-- Body content -->
+<ArticleBody>
+  <slot />
+</ArticleBody>
+
+<!-- Footer (tags, share, comments) -->
+<ArticleFooter
+  tags={tags}
+  articleUrl={articleUrl}
+  articleTitle={title}
+  showComments={comments}
+/>
