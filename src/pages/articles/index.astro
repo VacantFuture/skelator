@@ -1,0 +1,53 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+---
+
+<Layout title="Articles — DSA High Peaks">
+  <div class="mx-auto max-w-4xl px-6 py-16 md:py-24">
+    <h1 class="font-playfair text-heading-2 font-bold text-heading-primary mb-4">
+      Articles
+    </h1>
+    <p class="font-sans text-body text-body-secondary mb-12 max-w-2xl">
+      Analysis, reports, and perspectives from the DSA High Peaks chapter.
+    </p>
+
+    <div class="grid gap-8 md:grid-cols-2">
+      <!-- Labor Day article -->
+      <ArticleCard
+        title="Why Labor Day Matters for the Working Class"
+        excerpt="On Labor Day, we reflect on the victories won by organized labor and the battles still ahead. The fight for fair wages, safe workplaces, and worker power is far from over."
+        date="September 2, 2026"
+        author="DSA High Peaks"
+        imageSrc="/images/labor-day.jpg"
+        imageAlt="Workers marching in solidarity"
+        href="/articles/why-labor-day-matters"
+        tag="Labor"
+      />
+
+      <!-- Placeholder: Housing article -->
+      <ArticleCard
+        title="Adirondack Housing Crisis: A Socialist Perspective"
+        excerpt="With summer residents driving up prices and workers priced out of their own communities, we examine how capitalism fails housing and what socialism offers instead."
+        date="August 18, 2026"
+        author="DSA High Peaks"
+        imageSrc="/images/adirondack-homes.jpg"
+        imageAlt="Houses in the Adirondack mountains"
+        href="/articles/adirondack-housing-crisis"
+        tag="Housing"
+      />
+
+      <!-- Placeholder: Mutual Aid article -->
+      <ArticleCard
+        title="Mutual Aid in the Mountains: Building Community Power"
+        excerpt="From food mutual aid to disaster response, DSA High Peaks chapters are showing what solidarity looks like when it matters most."
+        date="August 5, 2026"
+        author="DSA High Peaks"
+        imageSrc="/images/mutual-aid.jpg"
+        imageAlt="Volunteers distributing supplies"
+        href="/articles/mutual-aid-mountains"
+        tag="Mutual Aid"
+      />
+    </div>
+  </div>
+</Layout>

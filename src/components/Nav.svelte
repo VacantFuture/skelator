@@ -3,9 +3,10 @@
 
   /** Nav links. Point hrefs at real routes as pages are added. */
   const links = [
-    { label: 'Articles', href: '#' },
+    { label: 'Articles', href: '/articles' },
     { label: 'Campaigns', href: '#' },
     { label: 'About', href: '#' },
+    { label: 'Take Action', href: '#action' },
   ];
 
   let open = $state(false);

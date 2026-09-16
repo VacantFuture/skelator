@@ -1,94 +1,88 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ArticlePage from '../components/ArticlePage.astro';
-import highpeaksLogo from '../assets/images/highpeaks-logo-base.png';
-
-const articleUrl = Astro.url.href;
-const featuredImage = {
-  src: highpeaksLogo.src,
-  alt: 'High Peaks Community logo',
-  aspect: 'aspect-[3/2]',
-  sizes: '(min-width: 768px) 768px, 100vw',
-};
-
-const byline = {
-  author: 'DSA Editorial Board',
-  bio: 'The editorial team of the Democratic Socialists of America.',
-  avatar: '/img/avatars/dsa-editorial.jpg',
-  publishedAt: '2025-09-01',
-  readingTime: 8,
-};
-
-const tags = [
-  { label: 'Labor', href: '/tags/labor' },
-  { label: 'Workers', href: '/tags/workers' },
-  { label: 'Solidarity', href: '/tags/solidarity' },
-];
+import Hero from '../components/Hero.astro';
+import ArticleCard from '../components/ArticleCard.astro';
+import ContactForm from '../components/ContactForm.astro';
+import heroBgSrc from '../assets/images/jake-thacker-I63YZy3S9Ns-unsplash.jpg';
 ---
 
-<Layout>
-  <title slot="head">DSA — Labor Day: Why the Fight for Workers Is the Fight for Democracy Itself</title>
+<Layout title="High Peaks DSA — Home">
+  <Hero
+    imageSrc={heroBgSrc.src}
+    imageAlt=""
+    heading="Democracy, Socialism, and Solidarity"
+    description="The High Peaks chapter of the Democratic Socialists of America — building power from the Adirondacks for working people everywhere."
+    ctaHref="#latest"
+    ctaLabel="Read Our Latest"
+  />
 
-  <ArticlePage
-    title="Labor Day: Why the Fight for Workers Is the Fight for Democracy Itself"
-    category="Special Report · September 2025"
-    deck="As we mark another May Day, the labor movement stands at a crossroads — one that will define the future of work, dignity, and power in this country."
-    featuredImage={featuredImage}
-    byline={byline}
-    tags={tags}
-    articleUrl={articleUrl}
-    comments
-  >
-    <p class="lead">
-      For over a century, workers have gathered on the first Monday in September to celebrate what the labor movement has won: the eight-hour day, workplace safety standards, the end of child labor, the weekend, overtime pay, and the simple idea that a person's worth is not measured by their hourly wage. But celebration without action is hollow. This Labor Day, we must ask ourselves what kind of movement we are building — and who it serves.
-    </p>
+  <!-- Latest Articles -->
+  <section id="latest" class="mx-auto max-w-4xl px-6 py-16 md:py-24">
+    <div class="mb-10 flex items-end justify-between">
+      <div>
+        <h2 class="font-playfair text-heading-3 font-bold text-heading-primary">Latest Articles</h2>
+        <p class="mt-2 font-sans text-body text-body-secondary">
+          Analysis, reports, and perspectives from the chapter.
+        </p>
+      </div>
+    </div>
 
-    <h3>The Historical Stakes</h3>
+    <div class="grid gap-8 md:grid-cols-2">
+      <!-- Card 1 -->
+      <ArticleCard
+        title="Why Labor Day Matters for the Working Class"
+        excerpt="On Labor Day, we reflect on the victories won by organized labor and the battles still ahead. The fight for fair wages, safe workplaces, and worker power is far from over."
+        date="September 2, 2026"
+        author="DSA High Peaks"
+        imageSrc="/images/labor-day.jpg"
+        imageAlt="Workers marching in solidarity"
+        href="/articles/why-labor-day-matters"
+        tag="Labor"
+      />
 
-    <p>
-      The labor movement did not emerge from the benevolence of the powerful. It was forged in blood and fire — in the blood spilled at Haymarket, in the fires of the Ludlow Massacre, in the strike-breaking violence of Pinkerton agents and state militias. Every right we take for granted on a typical workday was wrested from those who believed they had an absolute right to treat human beings as interchangeable parts.
-    </p>
+      <!-- Card 2 -->
+      <ArticleCard
+        title="Adirondack Housing Crisis: A Socialist Perspective"
+        excerpt="With summer residents driving up prices and workers priced out of their own communities, we examine how capitalism fails housing and what socialism offers instead."
+        date="August 18, 2026"
+        author="DSA High Peaks"
+        imageSrc="/images/adirondack-homes.jpg"
+        imageAlt="Houses in the Adirondack mountains"
+        href="/articles/adirondack-housing-crisis"
+        tag="Housing"
+      />
 
-    <p>
-      This is not ancient history. It is the foundation upon which every labor victory since has been built. To forget it is to invite its reversal.
-    </p>
+      <!-- Card 3 -->
+      <ArticleCard
+        title="Mutual Aid in the Mountains: Building Community Power"
+        excerpt="From food mutual aid to disaster response, DSA High Peaks chapters are showing what solidarity looks like when it matters most."
+        date="August 5, 2026"
+        author="DSA High Peaks"
+        imageSrc="/images/mutual-aid.jpg"
+        imageAlt="Volunteers distributing supplies"
+        href="/articles/mutual-aid-mountains"
+        tag="Mutual Aid"
+      />
+    </div>
 
-    <h3>The Modern Landscape</h3>
+    <div class="mt-10 text-center md:col-span-2">
+      <a
+        href="/articles"
+        class="inline-block rounded-full border-2 border-accent-500 px-8 py-3 font-sans text-body font-bold text-accent-500 transition-colors hover:bg-accent-500 hover:text-neutral-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2"
+      >
+        View All Articles
+      </a>
+    </div>
+  </section>
 
-    <p>
-      Today, we face a different set of challenges — but the fundamental question remains the same: who holds power in the workplace? The answer determines whether a worker can afford healthcare, whether a single mother can work two jobs and still feed her children, whether a young graduate can enter the workforce without being shackled to decades of debt.
-    </p>
-
-    <p>
-      Union density in the United States has hovered around 10 percent for decades, though recent organizing drives at companies like Amazon, Starbucks, and various auto plants have sparked a renewed sense of possibility. Young workers — many of them born into the gig economy, where every shift is a solo performance with no union rep to call — are leading a new wave of labor activism that is bold, creative, and unapologetically intersectional.
-    </p>
-
-    <blockquote>
-      <p>
-        "The labor movement is not just about wages and benefits. It is about democracy itself — the idea that every person who contributes to the production of wealth should have a say in how that wealth is distributed and how work is organized."
-      </p>
-    </blockquote>
-
-    <p>
-      The gig economy has disrupted traditional employment structures, leaving millions of workers without the protections that decades of organizing secured. Delivery drivers, rideshare operators, warehouse workers, and home care workers find themselves in a legal limbo — classified as independent contractors rather than employees, stripping them of minimum wage guarantees, overtime pay, and the right to unionize. This is not innovation; it is exploitation dressed up in startup jargon.
-    </p>
-
-    <h3>The Power of Solidarity</h3>
-
-    <p>
-      Solidarity is not a buzzword. It is the practical recognition that your interests are tied to the interests of every other worker, regardless of their industry, geography, or identity. When a nurse in Chicago wins a contract with better staffing ratios, every nurse in the country benefits. When a warehouse worker at an Amazon fulfillment center wins union recognition, the precedent strengthens the hand of every warehouse worker everywhere.
-    </p>
-
-    <p>
-      Building this kind of solidarity requires more than rhetoric. It requires organizing — door-knocking, one-on-one meetings, worker education, and the willingness to take risks. It means showing up at picket lines for causes that may not directly affect you. It means recognizing that the fight for a living wage, for healthcare, for housing, and for racial justice are all part of the same struggle.
-    </p>
-
-    <p>
-      The Democratic Socialists of America has a unique role to play in this movement. As a political organization rooted in both theory and practice, we bring a framework that connects workplace struggles to broader structural change. We understand that economic democracy is inseparable from political democracy — that you cannot have one without the other. Our task is to help build a labor movement that is as diverse, as ambitious, and as radical as the challenges we face.
-    </p>
-
-    <p>
-      As we celebrate Labor Day, let us not merely look backward. Let us look forward with clear eyes at what must still be won. The future of work is not written — it is being written now, in every bargaining session, every picket line, every union drive, and every conversation between a worker and their colleague about what they deserve. The question is not whether the labor movement will evolve. It is whether we will evolve fast enough to meet the moment.
-    </p>
-  </ArticlePage>
+  <!-- ActionNetwork Sign-Up Form -->
+  <ContactForm
+    formSlug="contact-highpeaks-dsa"
+    heading="Stay in the Fight"
+    description="Join our mailing list to get updates on events, campaigns, and actions in the Adirondacks."
+  />
 </Layout>
+
+<style is:global>
+  .red-100 { color: #fca5a5; }
+</style>

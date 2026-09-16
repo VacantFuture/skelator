@@ -1,0 +1,54 @@
+---
+/**
+ * Hero.astro
+ *
+ * Renders a full-width hero section with a background image,
+ * gradient overlay, heading, description text, and a CTA link.
+ *
+ * Props:
+ *   imageSrc   - Background image source (required)
+ *   imageAlt   - Alt text for accessibility
+ *   heading    - Hero heading text (required)
+ *   description - Supporting description text (required)
+ *   ctaHref    - URL for the CTA button (required)
+ *   ctaLabel   - Label text for the CTA button (required)
+ */
+
+interface Props {
+  imageSrc: string;
+  imageAlt: string;
+  heading: string;
+  description: string;
+  ctaHref: string;
+  ctaLabel: string;
+}
+
+const { imageSrc, imageAlt, heading, description, ctaHref, ctaLabel } = Astro.props;
+---
+
+<section class="relative isolate overflow-hidden">
+  <div class="absolute inset-0">
+    <img
+      src={imageSrc}
+      alt={imageAlt}
+      class="size-full object-cover"
+      aria-hidden="true"
+    />
+    <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black/80" />
+  </div>
+
+  <div class="relative mx-auto max-w-4xl px-6 py-32 text-center md:py-48">
+    <h1 class="font-playfair text-heading-2 font-bold leading-tight tracking-tight text-neutral-0 md:text-heading-1">
+      {heading}
+    </h1>
+    <p class="mx-auto mt-6 max-w-2xl font-sans text-body-lg leading-relaxed text-neutral-200">
+      {description}
+    </p>
+    <a
+      href={ctaHref}
+      class="mt-10 inline-block rounded-full bg-accent-500 px-8 py-3.5 font-sans text-body font-bold text-neutral-0 shadow-md transition-colors hover:bg-accent-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2"
+    >
+      {ctaLabel}
+    </a>
+  </div>
+</section>

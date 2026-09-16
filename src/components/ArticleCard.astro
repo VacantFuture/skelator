@@ -1,0 +1,66 @@
+---
+/**
+ * ArticleCard.astro
+ *
+ * Renders a card preview for article listings (home page, article index, etc).
+ *
+ * Props:
+ *   title       - Article title (required)
+ *   excerpt     - Short summary/blurb text
+ *   date        - Publication date string (ISO or readable)
+ *   author      - Author name
+ *   imageSrc    - Featured image URL or path
+ *   imageAlt    - Alt text for the featured image
+ *   href        - Link destination (required)
+ *   tag         - Optional category/tag label
+ */
+
+interface Props {
+  title: string;
+  excerpt: string;
+  date: string;
+  author: string;
+  imageSrc: string;
+  imageAlt: string;
+  href: string;
+  tag?: string;
+}
+
+const { title, excerpt, date, author, imageSrc, imageAlt, href, tag } = Astro.props;
+---
+
+<a
+  href={href}
+  class="group flex flex-col overflow-hidden rounded-xl bg-surface-default shadow-sm transition-shadow hover:shadow-lg focus-within:ring-2 focus-within:ring-accent-500 focus-within:ring-offset-2"
+>
+  <!-- Featured image -->
+  <div class="relative aspect-[3/2] overflow-hidden">
+    <img
+      src={imageSrc}
+      alt={imageAlt}
+      loading="lazy"
+      class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+    />
+    {tag && (
+      <span class="absolute left-4 top-4 rounded-full bg-accent-500 px-3 py-1 font-sans text-body-sm font-bold uppercase tracking-wider text-neutral-0">
+        {tag}
+      </span>
+    )}
+  </div>
+
+  <!-- Content -->
+  <div class="flex flex-1 flex-col gap-3 p-5">
+    <h2 class="font-playfair text-heading-4 font-bold leading-tight text-heading-primary group-hover:text-accent-600 transition-colors">
+      {title}
+    </h2>
+    <p class="font-sans text-body-sm leading-relaxed text-body-secondary line-clamp-3">
+      {excerpt}
+    </p>
+
+    <div class="mt-auto flex items-center gap-2 font-sans text-body-sm text-body-tertiary pt-2">
+      <time>{date}</time>
+      <span>&middot;</span>
+      <span>{author}</span>
+    </div>
+  </div>
+</a>

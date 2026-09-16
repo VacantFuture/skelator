@@ -1,0 +1,45 @@
+---
+/**
+ * ContactForm.astro
+ *
+ * Renders an ActionNetwork sign-up form embed.
+ *
+ * Props:
+ *   formSlug   - ActionNetwork form slug (e.g. "contact-highpeaks-dsa")
+ *   heading    - Section heading above the form
+ *   description - Section description text
+ */
+
+interface Props {
+  formSlug?: string;
+  heading?: string;
+  description?: string;
+}
+
+const { formSlug = 'contact-highpeaks-dsa', heading, description } = Astro.props;
+
+// Unique ID for the form target div so it works on pages with multiple forms
+const formAreaId = `can-form-area-${formSlug}`;
+const widgetUrl = `https://actionnetwork.org/widgets/v6/form/${formSlug}?format=js&source=widget`;
+---
+
+<section id="action" class="bg-accent-500 py-16 md:py-24">
+  <div class="mx-auto max-w-4xl px-6 text-center">
+    {heading && (
+      <>
+        <h2 class="font-playfair text-heading-3 font-bold text-neutral-0">{heading}</h2>
+        {description && (
+          <p class="mx-auto mt-3 max-w-2xl font-sans text-body text-red-100">
+            {description}
+          </p>
+        )}
+      </>
+    )}
+
+    <div class="mt-10 flex justify-center">
+      <link href='https://actionnetwork.org/css/style-embed-v3.css' rel='stylesheet' type='text/css' />
+      <script is:inline src={widgetUrl}></script>
+      <div id={formAreaId} style='width: 100%'></div>
+    </div>
+  </div>
+</section>
