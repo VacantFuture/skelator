@@ -55,13 +55,33 @@
     <!-- Wordmark -->
     <a
       href="/"
-      class="rounded-sm font-display text-lg font-bold tracking-tight text-neutral-0 transition-colors hover:text-neutral-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-0"
-      >HighPeaks DSA</a>
+      class="text-neutral-0 transition-colors hover:text-neutral-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-0"
+      aria-label="Home"
+    >
+      <svg
+        class="h-9 w-auto"
+        viewBox="0 0 292 36"
+        fill="currentColor"
+        xmlns="http://www.w3.org/2000/svg"
+        role="img"
+        aria-label="HighPeaks DSA"
+      >
+        <text
+          x="0"
+          y="30"
+          font-family="'Alfa Slab One', serif"
+          font-size="30"
+          font-weight="400"
+        >
+          HighPeaks DSA
+        </text>
+      </svg>
+    </a>
 
     <!-- Desktop nav -->
     <nav
       aria-label="Primary"
-      class="hidden items-center gap-6 font-sans text-body-sm text-neutral-0 md:flex"
+      class="hidden items-center gap-6 font-sans text-heading text-neutral-0 md:flex"
     >
       {#each links as link (link.label)}
         <a

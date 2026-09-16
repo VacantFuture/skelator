@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap');
 
 /* ========================================================================
    DSA DESIGN SYSTEM — Tailwind CSS v4
@@ -12,7 +13,8 @@
 @theme inline {
   --font-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
                "Segoe UI", sans-serif;
-  --font-serif: "Playfair Display", Georgia, "Times New Roman", serif;
+   --font-serif: "Playfair Display", Georgia, "Times New Roman", serif;
+   --font-slab: "Alfa Slab One", serif;
   --text-display: 2.25rem;
   --text-title: 1.5rem;
   --text-heading: 1.125rem;
@@ -177,6 +179,13 @@
 }
 
 /* --- Font Face Declarations --- */
+@font-face {
+  font-family: "Alfa Slab One";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/AlfaSlabOne-Regular.ttf") format("truetype");
+}
 @font-face {
   font-family: "Playfair Display";
   font-style: normal;
